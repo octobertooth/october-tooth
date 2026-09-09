@@ -1,0 +1,14 @@
+---
+layout: layouts/base.njk
+permalink: /
+---
+{% set t = collections.tapes[0].data %}
+{% if t %}
+  {% include "partials/tape-body.njk" %}
+{% else %}
+  <div class="empty-state">
+    <p class="empty-key">no tape loaded</p>
+    <p>the deck is empty. the first tape goes up when it's done being recorded.</p>
+    <p><a href="/about/">about october tooth</a></p>
+  </div>
+{% endif %}

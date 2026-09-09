@@ -5,16 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{{ title or "october tooth" }}</title>
     {% if noindex %}<meta name="robots" content="noindex, nofollow" />{% endif %}
+    <meta name="theme-color" content="#efeee9" />
     <link rel="stylesheet" href="/css/main.css" />
   </head>
   <body>
-    <div class="page">
+    <div class="page{% if bareChrome %} page--bare{% endif %}">
+      {% if not bareChrome %}
       <div class="site-header"><a href="/">october tooth</a></div>
-      <nav class="site-nav">
-        <a href="/archive/">archive</a>
-        <a href="/about/">about</a>
+      <nav class="site-nav" aria-label="sections">
+        <a href="/"{% if page.url == "/" %} class="is-here" aria-current="page"{% endif %}>current tape</a>
+        <a href="/archive/"{% if page.url == "/archive/" %} class="is-here" aria-current="page"{% endif %}>archive</a>
+        <a href="/about/"{% if page.url == "/about/" %} class="is-here" aria-current="page"{% endif %}>about</a>
       </nav>
+      {% endif %}
+
       {{ content | safe }}
+
+      {% if bareChrome %}
+      <div class="site-footer">
+        <a href="/">october tooth</a>
+        <a href="/about/">about</a>
+      </div>
+      {% endif %}
     </div>
   </body>
 </html>

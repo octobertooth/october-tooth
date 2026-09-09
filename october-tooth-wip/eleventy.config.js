@@ -1,5 +1,6 @@
 module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy("src/css");
+  eleventyConfig.addPassthroughCopy("src/js");
   eleventyConfig.addPassthroughCopy("src/admin");
   eleventyConfig.addPassthroughCopy("src/images");
 
@@ -35,6 +36,34 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addFilter("readableDate", function (date) {
     const d = new Date(date);
     return d.toLocaleDateString("en-US", { month: "short", day: "2-digit", year: "numeric" }).toLowerCase();
+  });
+
+  // "2:14" -> 134 seconds, so the deck knows a track length before the file loads
+  eleventyConfig.addFilter("seconds", function (stamp) {
+    if (!stamp) return "";
+    const parts = String(stamp).split(":").map(Number);
+    if (parts.some(isNaN)) return "";
+    return parts.reduce((total, part) => total * 60 + part, 0);
+  });
+
+  // media entries may be a bare filename (living beside the tape) or a full path
+  eleventyConfig.addFilter("mediaSrc", function (src, slug) {
+    if (!src) return "";
+    return src.startsWith("/") || src.startsWith("http") ? src : `/images/tapes/${slug}/${src}`;
+  });
+
+  // netlify image cdn — resize + format-negotiate on the edge. svgs pass straight through.
+  const transformable = (src) => Boolean(src) && !/\.svg(\?|$)/i.test(src) && !src.startsWith("http");
+  const cdnUrl = (src, width, quality) =>
+    `/.netlify/images?url=${encodeURIComponent(src)}&w=${width}&q=${quality || 74}`;
+
+  eleventyConfig.addFilter("cdn", function (src, width, quality) {
+    return transformable(src) ? cdnUrl(src, width, quality) : src;
+  });
+
+  eleventyConfig.addFilter("cdnSet", function (src, widths) {
+    if (!transformable(src)) return "";
+    return widths.map((w) => `${cdnUrl(src, w)} ${w}w`).join(", ");
   });
 
   return {

@@ -1,0 +1,161 @@
+{% set headerWidths = [640, 960, 1280, 1600] %}
+{% set headerSet = t.headerImage | cdnSet(headerWidths) %}
+
+{% if t.headerImage %}
+<div class="header-image">
+  <img
+    src="{{ t.headerImage | cdn(1280) }}"
+    {% if headerSet %}srcset="{{ headerSet }}" sizes="(max-width: 680px) 100vw, 640px"{% endif %}
+    alt="{{ t.headerAlt or '' }}"
+    width="1600" height="600"
+    fetchpriority="high" decoding="async" />
+</div>
+{% endif %}
+
+<div class="tape-meta">
+  <div class="tape-date">{{ t.date | readableDate }} — tape no. {{ t.tapeNumber | pad3 }}</div>
+  <h1 class="tape-title">{{ t.title }}</h1>
+</div>
+
+<section class="deck" data-deck aria-label="tape deck">
+  <div class="deck-plate">
+    <span class="screw" aria-hidden="true"></span>
+    <span class="screw" aria-hidden="true"></span>
+    <span class="screw" aria-hidden="true"></span>
+    <span class="screw" aria-hidden="true"></span>
+
+    <div class="deck-top">
+      <div class="cass-well">
+        <div class="cassette" data-cassette>
+          <div class="cass-shell">
+            <div class="cass-label">
+              <span class="cass-side">side a</span>
+              <span class="cass-name" data-cass-title>{{ t.tracks[0].title if t.tracks else 'no tape' }}</span>
+              <span class="cass-no">no. {{ t.tapeNumber | pad3 }}</span>
+            </div>
+            <div class="cass-hubs">
+              <span class="hub"><span class="pack" data-pack="l"></span><span class="spool"></span></span>
+              <span class="hub"><span class="pack" data-pack="r"></span><span class="spool"></span></span>
+            </div>
+          </div>
+        </div>
+        <div class="cass-glass" aria-hidden="true"></div>
+      </div>
+
+      <div class="deck-readout">
+        <div class="badge">
+          <span class="badge-brand">october tooth</span>
+          <span class="badge-model">424 <em>mkIII</em></span>
+          <span class="badge-sub">4&#8209;track cassette</span>
+        </div>
+
+        <div class="lcd">
+          <span class="lcd-counter" data-counter>00:00</span>
+          <span class="lcd-total" data-total>/ 00:00</span>
+          <span class="lcd-tag" data-lamp="demo" aria-hidden="true">demo<span class="sr-only"> mode: no audio file for this track, the transport is running against the printed time</span></span>
+        </div>
+
+        <div class="lamps" aria-hidden="true">
+          <span class="lamp" data-lamp="play">play</span>
+          <span class="lamp" data-lamp="pause">pause</span>
+          <span class="lamp is-off">rec</span>
+        </div>
+
+        <div class="meters" aria-hidden="true">
+          <span class="meter-row"><span class="meter-key">l</span><span class="meter" data-meter="l"><span class="meter-bar"></span></span></span>
+          <span class="meter-row"><span class="meter-key">r</span><span class="meter" data-meter="r"><span class="meter-bar"></span></span></span>
+        </div>
+      </div>
+
+      <div class="sticker" data-sticker role="status" aria-live="polite">
+        <span class="sticker-face">
+          <span class="sticker-eyebrow">now playing</span>
+          <span class="sticker-name" data-sticker-track></span>
+        </span>
+      </div>
+    </div>
+
+    <div class="deck-controls">
+      <div class="transport">
+        <button class="key" type="button" data-act="rtz" aria-label="return to zero"><span class="key-glyph">&#9198;</span><span class="key-legend">rtz</span></button>
+        <button class="key" type="button" data-act="rew" aria-label="rewind"><span class="key-glyph">&#9666;&#9666;</span><span class="key-legend">rew</span></button>
+        <button class="key" type="button" data-act="play" aria-label="play"><span class="key-glyph">&#9656;</span><span class="key-legend">play</span></button>
+        <button class="key" type="button" data-act="ffwd" aria-label="fast forward"><span class="key-glyph">&#9656;&#9656;</span><span class="key-legend">f fwd</span></button>
+        <button class="key" type="button" data-act="stop" aria-label="stop"><span class="key-glyph">&#9632;</span><span class="key-legend">stop</span></button>
+        <button class="key" type="button" data-act="pause" aria-label="pause"><span class="key-glyph">&#10073;&#10073;</span><span class="key-legend">pause</span></button>
+      </div>
+
+      <div class="slides">
+        <label class="slide">
+          <span class="slide-key">level</span>
+          <input type="range" data-level min="0" max="1" step="0.01" value="0.85" aria-label="level" />
+        </label>
+        <label class="slide">
+          <span class="slide-key">pitch</span>
+          <input type="range" data-pitch min="-10" max="10" step="1" value="0" aria-label="pitch, percent" />
+        </label>
+      </div>
+    </div>
+  </div>
+
+  {% if t.tracks %}
+  <div class="tape-contents">
+    <div class="contents-key">tape contents</div>
+    <ul class="tracklist">
+      {% for track in t.tracks %}
+      <li>
+        <button class="track{% if loop.first %} is-cued{% endif %}" type="button"
+                data-track data-src="{{ track.audio }}" data-seconds="{{ track.duration | seconds }}"
+                data-title="{{ track.title }}" aria-pressed="{{ 'true' if loop.first else 'false' }}">
+          <span class="track-led" aria-hidden="true"></span>
+          <span class="track-no">{{ loop.index | pad2 }}</span>
+          <span class="track-title">{{ track.title }}</span>
+          <span class="track-duration">{{ track.duration }}</span>
+        </button>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+  {% endif %}
+</section>
+
+<div class="listen-links">
+  {% if t.wavDownload %}<a href="{{ t.wavDownload }}">wav</a>{% endif %}
+  {% if t.bandcamp %}<a href="{{ t.bandcamp }}">bandcamp</a>{% endif %}
+  {% if t.soundcloud %}<a href="{{ t.soundcloud }}">soundcloud</a>{% endif %}
+</div>
+
+{% if t.notes %}
+<div class="tape-notes">{{ t.notes }}</div>
+{% endif %}
+
+{% if t.media %}
+<div class="media-flow">
+  {% for item in t.media %}
+    {% if item.type == "link" %}
+      <a class="media-link" href="{{ item.url }}" rel="noopener">{{ item.label }}<span aria-hidden="true">&#8599;</span></a>
+    {% elif item.type == "video" %}
+      <div class="media-embed"><iframe src="{{ item.embedUrl }}" title="{{ item.label }}" loading="lazy" allowfullscreen></iframe></div>
+    {% else %}
+      {% set src = item.src | mediaSrc(t.slug) %}
+      {% set set = src | cdnSet([640, 960, 1280]) %}
+      <img class="media-img" src="{{ src | cdn(1280) }}"
+           {% if set %}srcset="{{ set }}" sizes="(max-width: 680px) 100vw, 640px"{% endif %}
+           alt="{{ item.alt or item.label }}"
+           {% if item.ratio %}style="aspect-ratio: {{ item.ratio }}"{% endif %}
+           loading="lazy" decoding="async" />
+    {% endif %}
+  {% endfor %}
+</div>
+{% endif %}
+
+<div class="tape-pagination">
+  {% tapeNav collections.tapes, t.tapeNumber %}
+</div>
+
+<div class="forward-note">
+  sent this to a friend? <a href="/about/#join">join the list</a> to get the next one.
+</div>
+
+<audio id="player" preload="none"></audio>
+<script src="/js/deck.js" defer></script>
