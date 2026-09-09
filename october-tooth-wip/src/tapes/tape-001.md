@@ -5,7 +5,7 @@ title: "side a, take 1"
 date: 2026-09-08
 tapeNumber: 1
 slug: tape-001
-headerImage: "/images/tapes/tape-004/tape-header-0001.png"
+headerImage: "/images/tapes/tape-001/tape-header-0001.png"
 headerAlt: ""
 tracks:
   - title: "august practice, rough"
@@ -14,7 +14,7 @@ tracks:
   - title: "second pass, tv on mute"
     duration: "1:41"
     audio: "/media/tape-004/track-02.wav"
-wavDownload: "[/media/tape-004/tape-004.zip](https://www.dropbox.com/scl/fi/kebpmrh88g6eiqihktc0a/tape-0001-wav.zip?rlkey=uybkmkkuz29m8cqou1b9wq8rh&st=zs4kqb6h&dl=0)"
+wavDownload: "https://www.dropbox.com/scl/fi/kebpmrh88g6eiqihktc0a/tape-0001-wav.zip?rlkey=uybkmkkuz29m8cqou1b9wq8rh&st=zs4kqb6h&dl=1"
 bandcamp: "https://octobertooth.bandcamp.com"
 soundcloud: "https://soundcloud.com/octobertooth"
 notes: >
