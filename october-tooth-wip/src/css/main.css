@@ -1,0 +1,346 @@
+/* october tooth — main stylesheet
+   trebuchet ms bold for ui / labels, times new roman for titles + body,
+   internet blue links, light grey header, kodak-colored "now playing" sticker */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #fff;
+  color: #000;
+  font-family: "Trebuchet MS", sans-serif;
+}
+
+.page {
+  max-width: 640px;
+  margin: 0 auto;
+  border: 1px solid #000;
+  background: #fff;
+  min-height: 100vh;
+}
+
+/* header + nav */
+
+.site-header {
+  background: #e8e8e8;
+  color: #000;
+  padding: 10px 16px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.site-header a {
+  color: #000;
+  text-decoration: none;
+}
+
+.site-nav {
+  padding: 8px 16px;
+  display: flex;
+  gap: 18px;
+  font-size: 11px;
+  font-weight: 700;
+  border-bottom: 1px solid #000;
+}
+
+.site-nav a {
+  color: #0000ee;
+  text-decoration: none;
+}
+
+.site-nav a:hover {
+  text-decoration: underline;
+}
+
+/* header image */
+
+.header-image {
+  height: 200px;
+  background: #eee;
+  border-bottom: 1px solid #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #888;
+  font-size: 12px;
+  overflow: hidden;
+}
+
+.header-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* title block */
+
+.tape-meta {
+  padding: 20px 18px 0;
+}
+
+.tape-date {
+  font-size: 11px;
+  font-weight: 700;
+  color: #666;
+  margin-bottom: 4px;
+}
+
+.tape-title {
+  font-family: "Times New Roman", Times, serif;
+  font-size: 26px;
+  color: #000;
+  margin: 0;
+}
+
+/* track list / mixtape player */
+
+.player {
+  padding: 14px 18px;
+}
+
+.tracklist {
+  border: 1px solid #000;
+}
+
+.trackwrap {
+  position: relative;
+}
+
+.trackwrap + .trackwrap .track {
+  border-top: 1px solid #000;
+}
+
+.track {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 12px;
+  border-left: 4px solid transparent;
+  cursor: pointer;
+  color: #000;
+  background: none;
+  width: 100%;
+  text-align: left;
+  font-family: inherit;
+}
+
+.track.is-active {
+  border-left-color: #0000cc;
+}
+
+.track .icon {
+  font-size: 14px;
+  width: 14px;
+}
+
+.track.is-active .icon {
+  color: #0000cc;
+}
+
+.track-title {
+  font-size: 12px;
+  font-weight: 700;
+  flex: 1;
+}
+
+.track-duration {
+  font-size: 11px;
+  font-weight: 700;
+  color: #666;
+}
+
+.track.is-active .track-duration {
+  color: #0000cc;
+}
+
+/* the "playing" sticker — classic kodak red + yellow */
+
+.blob {
+  position: absolute;
+  top: -14px;
+  right: 6px;
+  background: #ffc72c;
+  border: 3px solid #ed1c24;
+  border-radius: 42% 58% 53% 47% / 48% 44% 56% 52%;
+  padding: 3px 11px;
+  font-size: 10px;
+  font-weight: 700;
+  color: #ed1c24;
+  white-space: nowrap;
+  opacity: 0;
+  transform: rotate(-7deg) scale(0);
+}
+
+.blob.show {
+  animation: pop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+@keyframes pop {
+  0% {
+    transform: rotate(-7deg) scale(0);
+    opacity: 0;
+  }
+  60% {
+    transform: rotate(-7deg) scale(1.15);
+    opacity: 1;
+  }
+  100% {
+    transform: rotate(-7deg) scale(1);
+    opacity: 1;
+  }
+}
+
+.listen-links {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  padding: 8px 2px 0;
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.listen-links a {
+  color: #0000ee;
+}
+
+/* notes */
+
+.tape-notes {
+  padding: 0 18px 18px;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 15px;
+  line-height: 1.7;
+  color: #000;
+}
+
+/* media grid */
+
+.media-grid {
+  padding: 0 18px 18px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.media-item {
+  aspect-ratio: 1;
+  background: #eee;
+  border: 1px solid #000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  color: #888;
+  font-size: 10px;
+  font-weight: 700;
+  overflow: hidden;
+  text-align: center;
+  padding: 6px;
+}
+
+.media-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.media-item a {
+  color: #0000ee;
+}
+
+/* prev / next + list-join line */
+
+.tape-pagination {
+  padding: 16px 18px;
+  border-top: 1px solid #000;
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.tape-pagination a {
+  color: #0000ee;
+  text-decoration: none;
+}
+
+.forward-note {
+  padding: 10px 18px 16px;
+  font-size: 10px;
+  font-weight: 700;
+  color: #666;
+}
+
+.forward-note a {
+  color: #0000ee;
+}
+
+/* archive + about pages */
+
+.archive-list {
+  padding: 18px;
+}
+
+.archive-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid #000;
+  text-decoration: none;
+  color: #000;
+  font-size: 13px;
+}
+
+.archive-row:first-child {
+  border-top: 1px solid #000;
+}
+
+.archive-row .archive-num {
+  color: #666;
+  font-weight: 700;
+  margin-right: 10px;
+}
+
+.about-body {
+  padding: 20px 18px;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+/* mailing list join (about page only, not on every tape) */
+
+.join-form {
+  padding: 16px 18px;
+  border-top: 1px solid #000;
+  display: flex;
+  gap: 8px;
+}
+
+.join-form input {
+  flex: 1;
+  font-family: "Trebuchet MS", sans-serif;
+  font-size: 12px;
+  border: 1px solid #000;
+  border-radius: 0;
+  padding: 7px;
+  background: #fff;
+  color: #000;
+}
+
+.join-form button {
+  font-family: "Trebuchet MS", sans-serif;
+  font-weight: 700;
+  font-size: 11px;
+  background: #fff;
+  border: 1px solid #000;
+  border-radius: 0;
+  padding: 0 14px;
+  color: #0000cc;
+  cursor: pointer;
+}

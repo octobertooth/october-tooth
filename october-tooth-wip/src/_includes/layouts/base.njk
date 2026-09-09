@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{{ title or "october tooth" }}</title>
+    {% if noindex %}<meta name="robots" content="noindex, nofollow" />{% endif %}
+    <link rel="stylesheet" href="/css/main.css" />
+  </head>
+  <body>
+    <div class="page">
+      <div class="site-header"><a href="/">october tooth</a></div>
+      <nav class="site-nav">
+        <a href="/archive/">archive</a>
+        <a href="/about/">about</a>
+      </nav>
+      {{ content | safe }}
+    </div>
+  </body>
+</html>
