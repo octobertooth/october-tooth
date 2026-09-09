@@ -14,7 +14,7 @@ tracks:
   - title: "second pass, tv on mute"
     duration: "1:41"
     audio: "/media/tape-004/track-02.wav"
-wavDownload: "/media/tape-004/tape-004.zip"
+wavDownload: "[/media/tape-004/tape-004.zip](https://www.dropbox.com/scl/fi/kebpmrh88g6eiqihktc0a/tape-0001-wav.zip?rlkey=uybkmkkuz29m8cqou1b9wq8rh&st=zs4kqb6h&dl=0)"
 bandcamp: "https://octobertooth.bandcamp.com"
 soundcloud: "https://soundcloud.com/octobertooth"
 notes: >
