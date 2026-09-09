@@ -5,7 +5,7 @@ title: "side a, take 3"
 date: 2026-09-08
 tapeNumber: 4
 slug: tape-004
-headerImage: "/images/tapes/tape-004/header.svg"
+headerImage: "/images/tapes/tape-004/tape-header-0001.png"
 headerAlt: ""
 tracks:
   - title: "arrangement idea, rough"
