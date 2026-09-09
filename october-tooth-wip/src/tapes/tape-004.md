@@ -21,10 +21,10 @@ notes: >
   tv, what didn't work.
 media:
   - type: "image"
-    src: "Cassette Tape-August-full.png"
+    src: "cassette-tape-august-full.png"
     label: "photo"
   - type: "image"
-    src: "Cassette Tape-August.png"
+    src: "cassette-tape-august-front.png"
     label: "painting"
   - type: "link"
     url: "https://open.spotify.com/playlist/3IrXejj8iOObPS7zpgR2ju?si=h7iuzuB-R96MUMicJSOIJw"
