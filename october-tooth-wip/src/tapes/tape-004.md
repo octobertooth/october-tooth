@@ -21,12 +21,12 @@ notes: >
   tv, what didn't work.
 media:
   - type: "image"
-    src: "/images/tapes/tape-004/photo.svg"
+    src: "Cassette Tape-August-full.png"
     label: "photo"
   - type: "image"
-    src: "/images/tapes/tape-004/painting.svg"
+    src: "Cassette Tape-August.png"
     label: "painting"
   - type: "link"
-    url: "https://open.spotify.com/playlist/example"
+    url: "https://open.spotify.com/playlist/3IrXejj8iOObPS7zpgR2ju?si=h7iuzuB-R96MUMicJSOIJw"
     label: "playlist"
 ---
