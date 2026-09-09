@@ -7,7 +7,7 @@ noindex: true
 </div>
 
 <div class="tape-meta">
-  <div class="tape-date">{{ date | readableDate }} — tape no. {{ "%03d" | format(tapeNumber) }}</div>
+  <div class="tape-date">{{ date | readableDate }} — tape no. {{ tapeNumber | pad3 }}</div>
   <h1 class="tape-title">{{ title }}</h1>
 </div>
 
@@ -17,7 +17,7 @@ noindex: true
     <div class="trackwrap">
       <button class="track{% if loop.first %} is-active{% endif %}" data-src="{{ track.audio }}">
         <i class="icon">{% if loop.first %}▮▮{% else %}▶{% endif %}</i>
-        <span class="track-title">{{ "%02d" | format(loop.index) }} — {{ track.title }}</span>
+        <span class="track-title">{{ loop.index | pad2 }} — {{ track.title }}</span>
         <span class="track-duration">{{ track.duration }}</span>
       </button>
       <div class="blob{% if loop.first %} show{% endif %}">▶ playing!</div>
@@ -50,8 +50,7 @@ noindex: true
 {% endif %}
 
 <div class="tape-pagination">
-  {% if prevTape %}<a href="/tapes/{{ prevTape.slug }}/">← {{ "%03d" | format(prevTape.tapeNumber) }}</a>{% else %}<span></span>{% endif %}
-  {% if nextTape %}<a href="/tapes/{{ nextTape.slug }}/">{{ "%03d" | format(nextTape.tapeNumber) }} →</a>{% endif %}
+  {% tapeNav collections.tapes, tapeNumber %}
 </div>
 
 <div class="forward-note">
@@ -82,6 +81,9 @@ noindex: true
         }
         setActive(row);
       });
+    });
+  })();
+</script>
     });
   })();
 </script>
