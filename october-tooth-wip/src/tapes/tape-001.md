@@ -8,9 +8,9 @@ slug: tape-001
 headerImage: "/images/tapes/tape-004/tape-header-0001.png"
 headerAlt: ""
 tracks:
-  - title: "arrangement idea, rough"
+  - title: "august practice, rough"
     duration: "2:14"
-    audio: "/media/tape-004/track-01.wav"
+    audio: "tape-0001-1.mp3"
   - title: "second pass, tv on mute"
     duration: "1:41"
     audio: "/media/tape-004/track-02.wav"
