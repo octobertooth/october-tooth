@@ -13,17 +13,12 @@
 {% endif %}
 
 <div class="tape-meta">
-  <div class="tape-date">{{ t.date | readableDate }} — tape no. {{ t.tapeNumber | pad3 }}</div>
+  <div class="tape-date">{{ t.date | readableDate }} <span aria-hidden="true">&middot;</span> tape no. {{ t.tapeNumber | pad3 }}</div>
   <h1 class="tape-title">{{ t.title }}</h1>
 </div>
 
 <section class="deck" data-deck aria-label="tape deck">
   <div class="deck-plate">
-    <span class="screw" aria-hidden="true"></span>
-    <span class="screw" aria-hidden="true"></span>
-    <span class="screw" aria-hidden="true"></span>
-    <span class="screw" aria-hidden="true"></span>
-
     <div class="deck-top">
       <div class="cass-well">
         <div class="cassette" data-cassette>
@@ -56,9 +51,9 @@
         </div>
 
         <div class="lamps" aria-hidden="true">
-          <span class="lamp" data-lamp="play">play</span>
-          <span class="lamp" data-lamp="pause">pause</span>
-          <span class="lamp is-off">rec</span>
+          <span class="lamp lamp--play" data-lamp="play">play</span>
+          <span class="lamp lamp--pause" data-lamp="pause">pause</span>
+          <span class="lamp lamp--rec is-off">rec</span>
         </div>
 
         <div class="meters" aria-hidden="true">
@@ -79,7 +74,7 @@
       <div class="transport">
         <button class="key" type="button" data-act="rtz" aria-label="return to zero"><span class="key-glyph">&#9198;</span><span class="key-legend">rtz</span></button>
         <button class="key" type="button" data-act="rew" aria-label="rewind"><span class="key-glyph">&#9666;&#9666;</span><span class="key-legend">rew</span></button>
-        <button class="key" type="button" data-act="play" aria-label="play"><span class="key-glyph">&#9656;</span><span class="key-legend">play</span></button>
+        <button class="key key--play" type="button" data-act="play" aria-label="play"><span class="key-glyph">&#9656;</span><span class="key-legend">play</span></button>
         <button class="key" type="button" data-act="ffwd" aria-label="fast forward"><span class="key-glyph">&#9656;&#9656;</span><span class="key-legend">f fwd</span></button>
         <button class="key" type="button" data-act="stop" aria-label="stop"><span class="key-glyph">&#9632;</span><span class="key-legend">stop</span></button>
         <button class="key" type="button" data-act="pause" aria-label="pause"><span class="key-glyph">&#10073;&#10073;</span><span class="key-legend">pause</span></button>
@@ -105,7 +100,7 @@
       {% for track in t.tracks %}
       <li>
         <button class="track{% if loop.first %} is-cued{% endif %}" type="button"
-                data-track data-src="{{ track.audio }}" data-seconds="{{ track.duration | seconds }}"
+                data-track data-src="{{ track.audio | audioSrc(t.slug) }}" data-seconds="{{ track.duration | seconds }}"
                 data-title="{{ track.title }}" aria-pressed="{{ 'true' if loop.first else 'false' }}">
           <span class="track-led" aria-hidden="true"></span>
           <span class="track-no">{{ loop.index | pad2 }}</span>
@@ -119,11 +114,13 @@
   {% endif %}
 </section>
 
+{% if t.wavDownload or t.bandcamp or t.soundcloud %}
 <div class="listen-links">
-  {% if t.wavDownload %}<a href="{{ t.wavDownload }}">wav</a>{% endif %}
-  {% if t.bandcamp %}<a href="{{ t.bandcamp }}">bandcamp</a>{% endif %}
-  {% if t.soundcloud %}<a href="{{ t.soundcloud }}">soundcloud</a>{% endif %}
+  {% if t.wavDownload %}<a class="pill" href="{{ t.wavDownload }}" download>download wavs</a>{% endif %}
+  {% if t.bandcamp %}<a class="pill" href="{{ t.bandcamp }}" rel="noopener">bandcamp</a>{% endif %}
+  {% if t.soundcloud %}<a class="pill" href="{{ t.soundcloud }}" rel="noopener">soundcloud</a>{% endif %}
 </div>
+{% endif %}
 
 {% if t.notes %}
 <div class="tape-notes">{{ t.notes }}</div>
@@ -132,19 +129,54 @@
 {% if t.media %}
 <div class="media-flow">
   {% for item in t.media %}
-    {% if item.type == "link" %}
-      <a class="media-link" href="{{ item.url }}" rel="noopener">{{ item.label }}<span aria-hidden="true">&#8599;</span></a>
+
+    {% if item.type == "embed" %}
+      {# a share url from spotify / youtube / vimeo / apple music / soundcloud #}
+      {% set frame = item | embedInfo %}
+      {% if frame.src %}
+      <figure class="media-card">
+        <div class="media-embed"
+             style="{% if frame.height %}height: {{ frame.height }}px{% else %}aspect-ratio: {{ frame.ratio or '16 / 9' }}{% endif %}">
+          <iframe src="{{ frame.src }}"
+                  title="{{ item.label or 'embedded player' }}"
+                  loading="lazy"
+                  allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                  allowfullscreen></iframe>
+        </div>
+        {% if item.label %}<figcaption class="media-cap">{{ item.label }}</figcaption>{% endif %}
+      </figure>
+      {% else %}
+      {# url we can't frame — a plain link beats an empty box #}
+      <a class="media-link" href="{{ item.url }}" rel="noopener">{{ item.label or item.url }}<span aria-hidden="true">&#8599;</span></a>
+      {% endif %}
+
     {% elif item.type == "video" %}
-      <div class="media-embed"><iframe src="{{ item.embedUrl }}" title="{{ item.label }}" loading="lazy" allowfullscreen></iframe></div>
-    {% else %}
+      {% set poster = item.poster | mediaSrc(t.slug) %}
+      <figure class="media-card">
+        <video class="media-video"
+               src="{{ item.src | mediaSrc(t.slug) }}"
+               {% if poster %}poster="{{ poster }}"{% endif %}
+               {% if item.ratio %}style="aspect-ratio: {{ item.ratio }}"{% endif %}
+               controls preload="metadata" playsinline></video>
+        {% if item.label %}<figcaption class="media-cap">{{ item.label }}</figcaption>{% endif %}
+      </figure>
+
+    {% elif item.type == "link" %}
+      <a class="media-link" href="{{ item.url }}" rel="noopener">{{ item.label or item.url }}<span aria-hidden="true">&#8599;</span></a>
+
+    {% elif item.src %}
       {% set src = item.src | mediaSrc(t.slug) %}
       {% set set = src | cdnSet([640, 960, 1280]) %}
-      <img class="media-img" src="{{ src | cdn(1280) }}"
-           {% if set %}srcset="{{ set }}" sizes="(max-width: 680px) 100vw, 640px"{% endif %}
-           alt="{{ item.alt or item.label }}"
-           {% if item.ratio %}style="aspect-ratio: {{ item.ratio }}"{% endif %}
-           loading="lazy" decoding="async" />
+      <figure class="media-card">
+        <img class="media-img" src="{{ src | cdn(1280) }}"
+             {% if set %}srcset="{{ set }}" sizes="(max-width: 680px) 100vw, 640px"{% endif %}
+             alt="{{ item.alt or item.label or '' }}"
+             {% if item.ratio %}style="aspect-ratio: {{ item.ratio }}"{% endif %}
+             loading="lazy" decoding="async" />
+        {% if item.label %}<figcaption class="media-cap">{{ item.label }}</figcaption>{% endif %}
+      </figure>
     {% endif %}
+
   {% endfor %}
 </div>
 {% endif %}
