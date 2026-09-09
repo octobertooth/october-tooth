@@ -2,88 +2,18 @@
 layout: layouts/base.njk
 noindex: true
 ---
-<div class="header-image">
-  {% if headerImage %}<img src="{{ headerImage }}" alt="" />{% else %}header image{% endif %}
-</div>
-
-<div class="tape-meta">
-  <div class="tape-date">{{ date | readableDate }} — tape no. {{ tapeNumber | pad3 }}</div>
-  <h1 class="tape-title">{{ title }}</h1>
-</div>
-
-<div class="player">
-  <div class="tracklist">
-    {% for track in tracks %}
-    <div class="trackwrap">
-      <button class="track{% if loop.first %} is-active{% endif %}" data-src="{{ track.audio }}">
-        <i class="icon">{% if loop.first %}▮▮{% else %}▶{% endif %}</i>
-        <span class="track-title">{{ loop.index | pad2 }} — {{ track.title }}</span>
-        <span class="track-duration">{{ track.duration }}</span>
-      </button>
-      <div class="blob{% if loop.first %} show{% endif %}">▶ playing!</div>
-    </div>
-    {% endfor %}
-  </div>
-  <div class="listen-links">
-    {% if wavDownload %}<a href="{{ wavDownload }}">wav</a>{% endif %}
-    {% if bandcamp %}<a href="{{ bandcamp }}">bandcamp</a>{% endif %}
-    {% if soundcloud %}<a href="{{ soundcloud }}">soundcloud</a>{% endif %}
-  </div>
-</div>
-
-{% if notes %}
-<div class="tape-notes">{{ notes }}</div>
-{% endif %}
-
-{% if media %}
-<div class="media-grid">
-  {% for item in media %}
-  <div class="media-item">
-            {% if item.type == "link" %}
-          <a href="{{ item.url }}">{{ item.label }}</a>
-        {% elif item.type == "video" %}
-          <iframe src="{{ item.embedUrl }}" title="{{ item.label }}" allowfullscreen></iframe>
-        {% else %}
-          <img src="{{ item.src }}" alt="{{ item.label }}" />
-        {% endif %}
-  </div>
-  {% endfor %}
-</div>
-{% endif %}
-
-<div class="tape-pagination">
-  {% tapeNav collections.tapes, tapeNumber %}
-</div>
-
-<div class="forward-note">
-  sent this to a friend? <a href="/about/#join">join the list</a> to get the next one.
-</div>
-
-<audio id="player" style="display:none"></audio>
-<script>
-  (function () {
-    var audioEl = document.getElementById("player");
-    var tracks = document.querySelectorAll(".track");
-    function setActive(row) {
-      tracks.forEach(function (t) {
-        t.classList.remove("is-active");
-        t.querySelector(".icon").textContent = "▶";
-        t.closest(".trackwrap").querySelector(".blob").classList.remove("show");
-      });
-      row.classList.add("is-active");
-      row.querySelector(".icon").textContent = "▮▮";
-      row.closest(".trackwrap").querySelector(".blob").classList.add("show");
-    }
-    tracks.forEach(function (row) {
-      row.addEventListener("click", function () {
-        var src = row.getAttribute("data-src");
-        if (src) {
-          audioEl.src = src;
-          audioEl.play().catch(function () {});
-        }
-        setActive(row);
-      });
-    });
-  })();
-</script>
-
+{% set t = {
+  title: title,
+  date: date,
+  tapeNumber: tapeNumber,
+  slug: slug,
+  headerImage: headerImage,
+  headerAlt: headerAlt,
+  tracks: tracks,
+  notes: notes,
+  media: media,
+  wavDownload: wavDownload,
+  bandcamp: bandcamp,
+  soundcloud: soundcloud
+} %}
+{% include "partials/tape-body.njk" %}

@@ -6,6 +6,7 @@ date: 2026-09-08
 tapeNumber: 4
 slug: tape-004
 headerImage: "/images/tapes/tape-004/header.svg"
+headerAlt: ""
 tracks:
   - title: "arrangement idea, rough"
     duration: "2:14"
@@ -23,9 +24,13 @@ media:
   - type: "image"
     src: "cassette-tape-august-full.png"
     label: "photo"
+    alt: "the august cassette, whole tape"
+    ratio: "1 / 1"
   - type: "image"
     src: "cassette-tape-august-front.png"
     label: "painting"
+    alt: "the august cassette, front"
+    ratio: "1 / 1"
   - type: "link"
     url: "https://open.spotify.com/playlist/3IrXejj8iOObPS7zpgR2ju?si=h7iuzuB-R96MUMicJSOIJw"
     label: "playlist"

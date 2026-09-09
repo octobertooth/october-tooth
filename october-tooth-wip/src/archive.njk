@@ -2,14 +2,15 @@
 layout: layouts/base.njk
 permalink: /archive/
 title: "archive — october tooth"
+bareChrome: true
 ---
 <div class="archive-list">
   {% for tape in collections.tapes %}
-  <a class="archive-row" href="/tapes/{{ tape.data.slug }}/">
+  <a class="archive-row" href="{% if loop.first %}/{% else %}/tapes/{{ tape.data.slug }}/{% endif %}">
     <span><span class="archive-num">{{ tape.data.tapeNumber | pad3 }}</span>{{ tape.data.title }}</span>
-    <span>{{ tape.data.date | readableDate }}</span>
+    <span class="archive-date">{{ tape.data.date | readableDate }}</span>
   </a>
   {% else %}
-  <p>nothing here yet.</p>
+  <p class="archive-empty">nothing here yet.</p>
   {% endfor %}
 </div>
