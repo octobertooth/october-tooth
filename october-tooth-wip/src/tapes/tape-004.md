@@ -31,7 +31,25 @@ media:
     label: "painting"
     alt: "the august cassette, front"
     ratio: "1 / 1"
-  - type: "link"
+  # playlists and videos embed by pasting the ordinary share url here.
+  # spotify, youtube, vimeo, apple music and soundcloud are recognised.
+  - type: "embed"
     url: "https://open.spotify.com/playlist/3IrXejj8iOObPS7zpgR2ju?si=h7iuzuB-R96MUMicJSOIJw"
     label: "playlist"
+  # a video from youtube or vimeo — same shape, just a different url:
+  # - type: "embed"
+  #   url: "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+  #   label: "practice room, tape 004"
+  # a video file kept in this repo instead (drop it in
+  # src/images/tapes/tape-004/ and it plays inline):
+  # - type: "video"
+  #   src: "practice-room.mp4"
+  #   poster: "practice-room-poster.jpg"
+  #   label: "practice room, tape 004"
+  #   ratio: "16 / 9"
+  # anything unrecognised can still be framed by hand:
+  # - type: "embed"
+  #   embedUrl: "https://example.com/player/123"
+  #   label: "somewhere else"
+  #   height: 240
 ---
