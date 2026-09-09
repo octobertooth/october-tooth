@@ -24,6 +24,14 @@ module.exports = function (eleventyConfig) {
     return `${left}${right}`;
   });
 
+  eleventyConfig.addFilter("pad2", function (n) {
+    return String(n).padStart(2, "0");
+  });
+
+  eleventyConfig.addFilter("pad3", function (n) {
+    return String(n).padStart(3, "0");
+  });
+
   eleventyConfig.addFilter("readableDate", function (date) {
     const d = new Date(date);
     return d.toLocaleDateString("en-US", { month: "short", day: "2-digit", year: "numeric" }).toLowerCase();
