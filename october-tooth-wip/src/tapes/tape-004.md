@@ -22,13 +22,13 @@ notes: >
   tv, what didn't work.
 media:
   - type: "image"
-    src: "cassette-tape-august-full.png"
-    label: "photo"
-    alt: "the august cassette, whole tape"
+    src: "cassette-tape-august-front.png"
+    label: "the painted august cover, front"
+    alt: "the august cassette, front cover"
     ratio: "1 / 1"
   - type: "image"
     src: "cassette-tape-august-front.png"
-    label: "painting"
+    label: "painted august cassette cover, front"
     alt: "the august cassette, front"
     ratio: "1 / 1"
   # playlists and videos embed by pasting the ordinary share url here.
