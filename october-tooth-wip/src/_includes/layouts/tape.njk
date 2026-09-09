@@ -39,11 +39,13 @@ noindex: true
 <div class="media-grid">
   {% for item in media %}
   <div class="media-item">
-    {% if item.type == "link" %}
-      <a href="{{ item.url }}">{{ item.label }}</a>
-    {% else %}
-      <img src="{{ item.src }}" alt="{{ item.label }}" />
-    {% endif %}
+            {% if item.type == "link" %}
+          <a href="{{ item.url }}">{{ item.label }}</a>
+        {% elif item.type == "video" %}
+          <iframe src="{{ item.embedUrl }}" title="{{ item.label }}" allowfullscreen></iframe>
+        {% else %}
+          <img src="{{ item.src }}" alt="{{ item.label }}" />
+        {% endif %}
   </div>
   {% endfor %}
 </div>
