@@ -1,10 +1,10 @@
 ---
 layout: layouts/tape.njk
-permalink: /tapes/tape-004/
-title: "side a, take 3"
+permalink: /tapes/tape-001/
+title: "side a, take 1"
 date: 2026-09-08
-tapeNumber: 4
-slug: tape-004
+tapeNumber: 1
+slug: tape-001
 headerImage: "/images/tapes/tape-004/tape-header-0001.png"
 headerAlt: ""
 tracks:
