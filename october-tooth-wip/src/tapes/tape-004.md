@@ -5,7 +5,7 @@ title: "side a, take 3"
 date: 2026-09-08
 tapeNumber: 4
 slug: tape-004
-headerImage: ""
+headerImage: "/images/tapes/tape-004/header.svg"
 tracks:
   - title: "arrangement idea, rough"
     duration: "2:14"
@@ -21,10 +21,10 @@ notes: >
   tv, what didn't work.
 media:
   - type: "image"
-    src: ""
+    src: "/images/tapes/tape-004/photo.svg"
     label: "photo"
   - type: "image"
-    src: ""
+    src: "/images/tapes/tape-004/painting.svg"
     label: "painting"
   - type: "link"
     url: "https://open.spotify.com/playlist/example"
