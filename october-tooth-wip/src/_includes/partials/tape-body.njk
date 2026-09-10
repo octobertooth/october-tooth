@@ -26,12 +26,12 @@
           <span class="dot" data-state-dot aria-hidden="true"></span>
           <span class="deck-word" data-deck-state>cued</span>
           <span class="np" data-sticker role="status" aria-live="polite">
-            <svg class="np-reel" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-              <circle cx="12" cy="12" r="9.25" fill="none" stroke="currentColor" stroke-width="1.4" />
-              <circle cx="12" cy="12" r="2.4" fill="currentColor" />
-              <path d="M12 16.2V20.2M8.36 9.9 4.9 7.9M15.64 9.9 19.1 7.9"
-                    fill="none" stroke="currentColor" stroke-width="1.4" />
-            </svg>
+            <span class="np-hop" aria-hidden="true">
+              <svg class="np-ball" viewBox="0 0 24 24" focusable="false">
+                <circle class="np-ball-body" cx="12" cy="12" r="11" />
+                <circle class="np-ball-pip" cx="12" cy="5.6" r="2.3" />
+              </svg>
+            </span>
             <span class="np-name" data-sticker-track></span>
           </span>
         </div>
@@ -56,10 +56,23 @@
     <div class="deck-controls">
       <div class="transport">
         <button class="key key--play" type="button" data-act="play" aria-label="play">
-          <span class="key-glyph" aria-hidden="true">&#9656;</span><span class="key-legend" data-play-legend>play</span>
+          <span class="key-glyph" aria-hidden="true">
+            <svg class="key-icon key-icon--play" viewBox="0 0 24 24" focusable="false">
+              <path d="M4.5 2.4 21.5 12 4.5 21.6Z" />
+            </svg>
+            <svg class="key-icon key-icon--pause" viewBox="0 0 24 24" focusable="false">
+              <path d="M4.6 2.4h5.6v19.2H4.6zM13.8 2.4h5.6v19.2h-5.6z" />
+            </svg>
+          </span>
+          <span class="key-legend" data-play-legend>play</span>
         </button>
-        <button class="key" type="button" data-act="stop" aria-label="stop">
-          <span class="key-glyph" aria-hidden="true">&#9632;</span><span class="key-legend">stop</span>
+        <button class="key key--stop" type="button" data-act="stop" aria-label="stop">
+          <span class="key-glyph" aria-hidden="true">
+            <svg class="key-icon" viewBox="0 0 24 24" focusable="false">
+              <path d="M2.9 2.9h18.2v18.2H2.9Z" />
+            </svg>
+          </span>
+          <span class="key-legend">stop</span>
         </button>
       </div>
 
@@ -86,6 +99,7 @@
           <span class="track-no">{{ loop.index | pad2 }}</span>
           <span class="track-title">{{ track.title }}</span>
           <span class="track-duration">{{ track.duration }}</span>
+          <span class="hop-ball" aria-hidden="true"></span>
         </button>
       </li>
       {% endfor %}
