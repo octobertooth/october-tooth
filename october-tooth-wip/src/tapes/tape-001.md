@@ -18,31 +18,37 @@ wavDownload: "https://www.dropbox.com/scl/fi/kebpmrh88g6eiqihktc0a/tape-0001-wav
 bandcamp: "https://octobertooth.bandcamp.com"
 soundcloud: "https://soundcloud.com/octobertooth"
 notes: |
-  a few notes on this one — this is kinda v2. years ago
-  the idea was about traveling around and recording cassette tapes on this ole Panasonic SlimLine
-  portable cassette recorder with auto stop.
-  I got that recorder some place up north while on a tour
-  there's a line in a Peachtea song written by John Warren that's kinda about this time to me.
+  this is kinda v2 o' an idea. years ago I had this idea
+  to record practice cassette tapes on this ole Panasonic SlimLine
+  portable cassette recorder with auto stop while I travel all around.
+  I got that recorder some place up north while on a tour - 
+  there's a line in a Peachtea song written by John Warrin that's kinda about this time to me.
   the line can hold a lot of things, but I like to think that it references
   bright and soft times with someone you love, trying to make somethin' together.
-  anyways, because I always take a deadline and add another task on top before the due date,
-  while I was trying to totally rebuild how I sound live solo
-  I thought I should add another layer and try and record that process.
+
+  anyways, I picked this idea back up because I played my first show in
+  a few years over at echoparkrising. because I always take a dealine and add another task
+  on top before the due date, while I was trying to totally rebuild how I sound live solo I thought I should
+  add another layer and try and record that process. 
   nothing polished, just a college try on each tune.
 
-  the first thing I really wanted to dig into was the guitar tone.
-  I'm still working on this and amps keep breaking, but I'm looking to
-  find a sonic space that holds weight without pushing me away. the next and last piece
-  my vocal, it's a bit tricky to articulate but I simultaneously always
-  want it to sound just like me while being something I'd like to hear. anyways,
-  this started because I played my first show in a few years
-  over at echoparkrising. I started recording this on my Tascam 246, but 
-  it broke in a serious way right after finishing this actual cassette tape.
-  I mixed this on a Tascam 424 mkIII and all new tapes will be recorded and mixed
+  first thing I was tryin' to find was a guitar tone that feels right.
+  not sharp, not bright, more like a warm rust color on a fence, round but energetic.
+  I'm still working on tryin' to land that tone and old amps break and keep breaking, but
+  I'm on a hunt for that sweet sweet sonic space that holds weight without pushing me away. 
+  the next and last piece in this recording, my vocal. it's a bit tricky to 
+  articulate, but I always seem to want it to sound simultaneously just like me
+  while being something else entirely. like it's just you and me in this room,
+  but also bigger, more fuzzy, a welcomed wave in the ocean.
+  
+  this recording is just a straightforward take on the set I played at echoparkrising.
+  this specific cassette I started recording with my Tascam 246, but 
+  it broke somethin' right after finishing this actual cassette tape.
+  I mixed this on my Tascam 424 mkIII and all new tapes will be recorded and mixed
   on that machine.
-  thanks for listening to this first cassette tape. I had quite a few movies
-  going on mute in the background. favorites this month were sleepless in seattle
-  and that thing you do.
+  
+  thanks for listening to this first cassette tape. bright and soft times ahead
+  scroll down for the rest of it.
 media:
   - type: "image"
     src: "cassette-tape-august-front.png"
