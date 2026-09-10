@@ -1341,7 +1341,17 @@ body {
   text-transform: uppercase;
 }
 
-.join-form button:hover {
+    .join-powered-by {
+      margin: 6px 0 0;
+      font-size: 10px;
+      color: var(--text-muted, #666);
+    }
+
+    .join-powered-by a {
+      color: inherit;
+    }
+
+    .join-form button:hover {
   background: var(--ink-soft);
 }
 
