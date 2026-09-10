@@ -57,11 +57,38 @@ media:
       it's kinda tricky to get some good stuff down on the 
       cassette's glossy finish but here we are. I think it turned out okay.
   - type: "image"
+    src: "100-164.JPG"
+    label: "1969 Italian Job, corner of mkIII & Obbie"
+    alt: "the august cassette, front cover"
+    note: |
+      opening title sequences are really the real deal
+      don't sleep on 'em. this sucker is from the opening of the Italian Job, but
+      not the smash from 2003
+      this sucker is from 1969 with michael caine
+      the guy from batman. layers
+      this also has a piece of Obbie painting in it.
+  - type: "image"
     src: "100-0073.JPG"
     label: "sleepless in seattle on the batman tv"
     alt: "batman tv"
     note: |
       opening title sequence
+  - type: "image"
+    src: "100-0159.JPG"
+    label: "back o' cassette tape"
+    alt: "back o' tape"
+  - type: "image"
+    src: "100-0080.JPG"
+    label: "d. b. @ bowl"
+    alt: "back o' tape"
+    note: |
+      d. b. at the hollywood bowl with kjr & sweet pals
+  - type: "image"
+    src: "100-0119.JPG"
+    label: "lemmy & jeans"
+    alt: "lj"
+    note: |
+      jeans & lemon love flowers. I love flowers too
   # playlists and videos embed by pasting the ordinary share url here.
   # spotify, youtube, vimeo, apple music and soundcloud are recognised.
   - type: "video"
