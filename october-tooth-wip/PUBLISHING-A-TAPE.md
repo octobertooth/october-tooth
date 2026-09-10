@@ -96,7 +96,7 @@ below is optional.
 
 | Field | What it does |
 | --- | --- |
-| `headerImage` | Full path to the wide image at the top of the page, e.g. `"/images/tapes/tape-005/header.jpg"`. Leave it out and the page simply starts at the title. |
+| `headerImage` | Full path to the wide image at the top of the page, e.g. `"/images/tapes/tape-005/header.jpg"`. Export it at 1920×1080 — see [The header image](#the-header-image). Leave it out and the page simply starts at the title. |
 | `headerAlt` | Description of the header image for screen readers. Leave as `""` if the image is decorative. |
 | `notes` | The writing about the tape, shown under the deck. Use the `|` block style (see `tape-001.md`) and leave a blank line between paragraphs — each one is set as its own paragraph, so this section can be as long as it needs to be. |
 | `wavDownload` | Path to a zip of the raw files, e.g. `"/media/tape-005/tape-005.zip"`. Adds a "download wavs" button. |
@@ -184,13 +184,35 @@ mkdir -p src/images/tapes/tape-005
 
 Same filename rules: lowercase, hyphens instead of spaces.
 
-You do **not** need to resize or optimise anything. Photos are served through
-Netlify's Image CDN, which resizes them and converts them to modern formats per
-visitor automatically. Upload the full-resolution file and let the site handle
-it. (SVG files skip this and are served directly, which is correct for them.)
+For the photos and artwork in the `media` list you do **not** need to resize or
+optimise anything. They are served through Netlify's Image CDN, which resizes
+them and converts them to modern formats per visitor automatically, and they are
+printed at their own shape. Upload the full-resolution file and let the site
+handle it. (SVG files skip this and are served directly, which is correct for
+them.)
 
-For the header image, aim for something wide — roughly 1600×600 — since that is
-the shape the page reserves for it.
+### The header image
+
+The header is the one image with a shape it has to fit, so it is worth exporting
+on purpose:
+
+| | |
+|---|---|
+| **Dimensions** | **1920 × 1080 pixels.** That is exactly the largest size the page ever asks for, so nothing is wasted and nothing is soft. |
+| **Shape** | **16:9, landscape.** Anything else gets cropped to 16:9 from the centre — a wide panorama loses its left and right edges, a tall photo loses its top and bottom. |
+| **Format** | **JPEG** for photographs. PNG only for flat artwork, lettering or anything with hard edges. |
+| **File size** | **Under about 1 MB.** Aim for 300–800 KB at quality 80. |
+| **Smallest that still looks right** | 1280 × 720. Below that it goes soft on a phone or a retina laptop. |
+
+Bigger is not better here. The page is 860 pixels wide, so it requests the
+header at 640, 960, 1280, 1600 or 1920 pixels wide depending on the screen, and
+1920 is the ceiling. A 15000-pixel-wide, 20 MB original is downscaled to the
+same 1920 in the end — it just makes the repository heavy and the very first
+visitor wait while the edge chews through it.
+
+If you only have a panorama and you want to keep the whole width of it, crop
+your own 16:9 version for the header and put the full panorama in the `media`
+list below, where images are shown at their true shape.
 
 ---
 
