@@ -18,11 +18,31 @@ wavDownload: "https://www.dropbox.com/scl/fi/kebpmrh88g6eiqihktc0a/tape-0001-wav
 bandcamp: "https://octobertooth.bandcamp.com"
 soundcloud: "https://soundcloud.com/octobertooth"
 notes: |
-  a few notes on this one — I've been working on what it really sounds like to hear
-  me play solo live these days. nothing polished, just a college try on each tune.
+  a few notes on this one — I started doing these years ago but at first
+  the idea was about traveling around and recording cassette tapes on this ole Panasonic SlimLine
+  portable cassette recorder with auto stop
+  I got it from some shop while on tour with some pals
+  there's a line in a Peachtea song written by John Warren that's kinda about this time
+  I think the line can hold a lot of things, but I like to think that the line references
+  bright and soft times with someone you love trying to make something together
+  anyways, because I always take a deadline and add another task on top before the due date
+  while I was trying to totally rebuild how I sound and what it really feels like
+  to watch me play live. I thought I should add another layer and try and record that process
+  I think this is the space I thought of to deliver that
+  nothing polished, just a college try on each tune.
   I've been digging this guitar sound,
   and the MKIII really brings out the warmth.
 
+  the first thing I really wanted to dive into was the guitar tone
+  I'm still working on this and amps keep breaking, but I'm looking to
+  find a sonic space that holds attention without pushing me away. the next and last piece
+  my vocal, it's a bit tricky to articulate but I simultaneously always
+  want it to sound just like me while being something I'd like to hear. anyways,
+  this started because I played my first show in a few years
+  over at echoparkrising. I started recording this on my Tascam 246, but 
+  it broke in a serious way right after finishing this actual cassette tape.
+  I mixed this on a Tascam 424 mkIII and all new tapes will be recorded and mixed
+  on that machine.
   thanks for listening to this first cassette tape. I had quite a few movies
   going on mute in the background. favorites this month were sleepless in seattle
   and that thing you do.
@@ -32,9 +52,10 @@ media:
     label: "painted august cover, front"
     alt: "the august cassette, front cover"
     note: |
-      painted on the j-card itself. it's kinda tricky to get some good stuff down
-      on the cassette's glossy finish but here we are.
-      bonus if you can name the reference cover.
+      painted on the j-card itself. this cover is a direct reference to an
+      all-time album cover. let me know if you catch it. I'll say it
+      it's kinda tricky to get some good stuff down on the 
+      cassette's glossy finish but here we are. I think it turned out okay.
   - type: "image"
     src: "100-0073.JPG"
     label: "sleepless in seattle on the batman tv"
@@ -52,7 +73,8 @@ media:
     label: "playlist"
     note: |
       here is this month's Kelly Jean Ross playlist if you'd like to listen.
-      I make her a playlist every month that's really just for her, but you can listen too.
+      I've been makin' her a playlist every month for a little bit and they
+      are really just for her, but you can listen too.
   # a video from youtube or vimeo — same shape, just a different url:
   # - type: "embed"
   #   url: "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
