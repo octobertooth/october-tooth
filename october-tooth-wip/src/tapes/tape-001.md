@@ -57,7 +57,7 @@ media:
       it's kinda tricky to get some good stuff down on the 
       cassette's glossy finish but here we are. I think it turned out okay.
   - type: "image"
-    src: "100-164.JPG"
+    src: "100-0164.JPG"
     label: "1969 Italian Job, corner of mkIII & Obbie"
     alt: "the august cassette, front cover"
     note: |
