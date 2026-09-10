@@ -1,3 +1,6 @@
+const fs = require("node:fs");
+const path = require("node:path");
+
 module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy("src/css");
   eleventyConfig.addPassthroughCopy("src/js");
@@ -33,6 +36,25 @@ module.exports = function (eleventyConfig) {
     return String(n).padStart(3, "0");
   });
 
+  // first n items — used by the archive hover panel in the masthead
+  eleventyConfig.addFilter("limit", function (list, n) {
+    return Array.isArray(list) ? list.slice(0, n) : list;
+  });
+
+  // notes and per-item captions are plain text in the front matter, and often
+  // run to several paragraphs. blank lines become paragraphs; everything is
+  // escaped, so a stray < or & in a note can't break the page.
+  eleventyConfig.addFilter("prose", function (text) {
+    if (!text) return "";
+    const escape = (s) =>
+      String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+    return String(text)
+      .trim()
+      .split(/\n\s*\n/)
+      .map((para) => `<p>${escape(para.trim()).replace(/\s*\n\s*/g, " ")}</p>`)
+      .join("\n");
+  });
+
   eleventyConfig.addFilter("readableDate", function (date) {
     const d = new Date(date);
     return d.toLocaleDateString("en-US", { month: "short", day: "2-digit", year: "numeric" }).toLowerCase();
@@ -57,6 +79,84 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addFilter("audioSrc", function (src, slug) {
     if (!src) return "";
     return src.startsWith("/") || src.startsWith("http") ? src : `/media/${slug}/${src}`;
+  });
+
+  /* ---------- real image proportions ----------
+     photos and paintings are printed at their own shape, so the page needs to
+     know that shape at build time: it sets the width/height attributes (no
+     layout shift while loading) and the --ar custom property the stylesheet
+     uses to cap a tall image without cropping it. png / jpeg / gif / webp
+     headers are read straight off disk — no image library involved. */
+
+  const dimCache = new Map();
+
+  function readDims(sitePath) {
+    if (!sitePath || /^https?:/i.test(sitePath)) return null;
+    if (dimCache.has(sitePath)) return dimCache.get(sitePath);
+
+    let dims = null;
+    try {
+      const file = path.join(__dirname, "src", sitePath.replace(/^\//, ""));
+      const buf = fs.readFileSync(file);
+
+      if (/\.svg$/i.test(file)) {
+        const head = buf.toString("utf8", 0, 2000);
+        const box = head.match(/viewBox\s*=\s*["']\s*[-\d.]+[ ,]+[-\d.]+[ ,]+([\d.]+)[ ,]+([\d.]+)/i);
+        if (box) dims = { w: Number(box[1]), h: Number(box[2]) };
+      } else if (buf.length > 24 && buf.toString("ascii", 1, 4) === "PNG") {
+        dims = { w: buf.readUInt32BE(16), h: buf.readUInt32BE(20) };
+      } else if (buf[0] === 0xff && buf[1] === 0xd8) {
+        // jpeg: walk the segment chain to the start-of-frame marker
+        let i = 2;
+        while (i + 9 < buf.length) {
+          if (buf[i] !== 0xff) {
+            i++;
+            continue;
+          }
+          const marker = buf[i + 1];
+          const size = buf.readUInt16BE(i + 2);
+          if (marker >= 0xc0 && marker <= 0xcf && ![0xc4, 0xc8, 0xcc].includes(marker)) {
+            dims = { w: buf.readUInt16BE(i + 7), h: buf.readUInt16BE(i + 5) };
+            break;
+          }
+          i += 2 + size;
+        }
+      } else if (buf.length > 10 && buf.toString("ascii", 0, 3) === "GIF") {
+        dims = { w: buf.readUInt16LE(6), h: buf.readUInt16LE(8) };
+      } else if (buf.length > 30 && buf.toString("ascii", 8, 12) === "WEBP") {
+        const chunk = buf.toString("ascii", 12, 16);
+        if (chunk === "VP8X") {
+          dims = {
+            w: 1 + (buf.readUIntLE(24, 3) & 0xffffff),
+            h: 1 + (buf.readUIntLE(27, 3) & 0xffffff),
+          };
+        } else if (chunk === "VP8 ") {
+          dims = { w: buf.readUInt16LE(26) & 0x3fff, h: buf.readUInt16LE(28) & 0x3fff };
+        }
+      }
+    } catch (err) {
+      dims = null; // missing or unreadable file — the page falls back to full width
+    }
+
+    if (dims && !(dims.w > 0 && dims.h > 0)) dims = null;
+    dimCache.set(sitePath, dims);
+    return dims;
+  }
+
+  // "0.667" for a portrait photo, "" when the shape can't be read
+  eleventyConfig.addFilter("aspect", function (sitePath) {
+    const dims = readDims(sitePath);
+    return dims ? String(Math.round((dims.w / dims.h) * 1e4) / 1e4) : "";
+  });
+
+  eleventyConfig.addFilter("pixelWidth", function (sitePath) {
+    const dims = readDims(sitePath);
+    return dims ? dims.w : "";
+  });
+
+  eleventyConfig.addFilter("pixelHeight", function (sitePath) {
+    const dims = readDims(sitePath);
+    return dims ? dims.h : "";
   });
 
   // netlify image cdn — resize + format-negotiate on the edge. svgs pass straight through.
@@ -118,7 +218,7 @@ module.exports = function (eleventyConfig) {
         src:
           "https://w.soundcloud.com/player/?url=" +
           encodeURIComponent(url) +
-          "&color=%233d8fe3&auto_play=false&hide_related=true&show_comments=false&show_teaser=false",
+          "&color=%23101010&auto_play=false&hide_related=true&show_comments=false&show_teaser=false",
         height: /\/sets\//i.test(url) ? 320 : 166,
       }),
     },

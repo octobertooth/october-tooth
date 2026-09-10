@@ -2,18 +2,45 @@
 layout: layouts/base.njk
 permalink: /archive/
 title: "archive — october tooth"
-bareChrome: true
 ---
 <div class="archive-list">
-  {% for tape in collections.tapes %}
-  <a class="archive-row" href="{% if loop.first %}/{% else %}/tapes/{{ tape.data.slug }}/{% endif %}">
-    <span class="archive-main">
-      <span class="archive-num">{{ tape.data.tapeNumber | pad3 }}</span>
-      <span class="archive-title">{{ tape.data.title }}</span>
-    </span>
-    <span class="archive-date">{{ tape.data.date | readableDate }}</span>
-  </a>
+  <h1 class="archive-head">archive</h1>
+
+  {% if collections.tapes | length %}
+  <table class="archive">
+    <thead>
+      <tr>
+        <th class="c-dot" scope="col"><span class="sr-only">status</span></th>
+        <th class="c-no" scope="col">no.</th>
+        <th class="c-title" scope="col">tape</th>
+        <th class="c-tracks" scope="col">trk</th>
+        <th class="c-date" scope="col">recorded</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for tape in collections.tapes %}
+      {% set isLive = loop.first and tape.data.status != "archived" %}
+      <tr>
+        <td class="c-dot">
+          <span class="dot{% if isLive %} is-on{% endif %}" aria-hidden="true"></span>
+          <span class="sr-only">{{ "live" if isLive else "archived" }}</span>
+        </td>
+        <td class="c-no">{{ tape.data.tapeNumber | pad3 }}</td>
+        <td class="c-title">
+          <a href="{% if loop.first %}/{% else %}/tapes/{{ tape.data.slug }}/{% endif %}">{{ tape.data.title }}</a>
+        </td>
+        <td class="c-tracks">{% if tape.data.tracks %}{{ tape.data.tracks | length }}{% else %}&mdash;{% endif %}</td>
+        <td class="c-date">{{ tape.data.date | readableDate }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <p class="archive-legend">
+    <span><span class="dot is-on" aria-hidden="true"></span> live &mdash; on the front page</span>
+    <span><span class="dot" aria-hidden="true"></span> archived</span>
+  </p>
   {% else %}
   <p class="archive-empty">nothing here yet.</p>
-  {% endfor %}
+  {% endif %}
 </div>
