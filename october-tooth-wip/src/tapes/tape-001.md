@@ -18,24 +18,21 @@ wavDownload: "https://www.dropbox.com/scl/fi/kebpmrh88g6eiqihktc0a/tape-0001-wav
 bandcamp: "https://octobertooth.bandcamp.com"
 soundcloud: "https://soundcloud.com/octobertooth"
 notes: |
-  a few notes on this one — I started doing these years ago but at first
+  a few notes on this one — this is kinda v2. years ago
   the idea was about traveling around and recording cassette tapes on this ole Panasonic SlimLine
-  portable cassette recorder with auto stop
-  I got it from some shop while on tour with some pals
-  there's a line in a Peachtea song written by John Warren that's kinda about this time
-  I think the line can hold a lot of things, but I like to think that the line references
-  bright and soft times with someone you love trying to make something together
-  anyways, because I always take a deadline and add another task on top before the due date
-  while I was trying to totally rebuild how I sound and what it really feels like
-  to watch me play live. I thought I should add another layer and try and record that process
-  I think this is the space I thought of to deliver that
+  portable cassette recorder with auto stop.
+  I got that recorder some place up north while on a tour
+  there's a line in a Peachtea song written by John Warren that's kinda about this time to me.
+  the line can hold a lot of things, but I like to think that it references
+  bright and soft times with someone you love, trying to make somethin' together.
+  anyways, because I always take a deadline and add another task on top before the due date,
+  while I was trying to totally rebuild how I sound live solo
+  I thought I should add another layer and try and record that process.
   nothing polished, just a college try on each tune.
-  I've been digging this guitar sound,
-  and the MKIII really brings out the warmth.
 
-  the first thing I really wanted to dive into was the guitar tone
+  the first thing I really wanted to dig into was the guitar tone.
   I'm still working on this and amps keep breaking, but I'm looking to
-  find a sonic space that holds attention without pushing me away. the next and last piece
+  find a sonic space that holds weight without pushing me away. the next and last piece
   my vocal, it's a bit tricky to articulate but I simultaneously always
   want it to sound just like me while being something I'd like to hear. anyways,
   this started because I played my first show in a few years
