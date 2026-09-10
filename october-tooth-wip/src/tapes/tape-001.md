@@ -5,7 +5,7 @@ title: "side a, full take"
 date: 2026-09-08
 tapeNumber: 1
 slug: tape-001
-headerImage: "/images/tapes/tape-001/tape-header-0001.png"
+headerImage: "/images/tapes/tape-001/tape-header-3.png"
 headerAlt: ""
 tracks:
   - title: "august practice, 23"
