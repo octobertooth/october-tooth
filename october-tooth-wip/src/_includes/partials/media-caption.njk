@@ -1,0 +1,26 @@
+{# the caption line under one media item: number + title, always the same
+   typography whatever the item is. an optional `note` in the front matter
+   turns the line into a disclosure that opens the longer text on click. #}
+{% macro caption(item, no) %}
+{% if item.note %}
+<figcaption class="media-cap">
+  <details class="cap">
+    <summary>
+      <span class="cap-line">
+        <span class="cap-no">{{ no }}</span>
+        <span class="cap-title">{{ item.label or item.alt or 'untitled' }}</span>
+        <span class="cap-more">note</span>
+      </span>
+    </summary>
+    <div class="cap-note">{{ item.note | prose | safe }}</div>
+  </details>
+</figcaption>
+{% elif item.label %}
+<figcaption class="media-cap">
+  <span class="cap-line">
+    <span class="cap-no">{{ no }}</span>
+    <span class="cap-title">{{ item.label }}</span>
+  </span>
+</figcaption>
+{% endif %}
+{% endmacro %}

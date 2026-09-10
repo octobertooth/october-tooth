@@ -5,34 +5,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{{ title or "october tooth" }}</title>
     {% if noindex %}<meta name="robots" content="noindex, nofollow" />{% endif %}
-    <meta name="theme-color" content="#c3ccd5" />
+    <meta name="theme-color" content="#ffffff" />
     <link rel="stylesheet" href="/css/main.css" />
   </head>
   <body>
     <div class="page">
-      <div class="titlebar">
-        <span class="titlebar-lights" aria-hidden="true">
-          <span class="tl tl--red"></span><span class="tl tl--amber"></span><span class="tl tl--green"></span>
-        </span>
-        <a class="titlebar-name" href="/">october tooth</a>
-        <span class="titlebar-sub" aria-hidden="true">practice tapes</span>
-      </div>
+      <header class="masthead">
+        <a class="wordmark" href="/">october tooth</a>
+        <p class="masthead-sub">practice tapes &middot; tascam 424 mkiii</p>
 
-      <nav class="site-nav" aria-label="sections">
-        <a href="/"{% if page.url == "/" %} class="is-here" aria-current="page"{% endif %}>current tape</a>
-        <a href="/archive/"{% if page.url == "/archive/" %} class="is-here" aria-current="page"{% endif %}>archive</a>
-        <a href="/about/"{% if page.url == "/about/" %} class="is-here" aria-current="page"{% endif %}>about</a>
-      </nav>
+        <nav class="nav" aria-label="sections">
+          <a href="/"{% if page.url == "/" %} class="is-here" aria-current="page"{% endif %}>current tape</a>
+
+          <span class="nav-drop">
+            <a href="/archive/"{% if page.url == "/archive/" %} class="is-here" aria-current="page"{% endif %}>archive</a>
+            <span class="nav-panel">
+              <span class="nav-panel-key">recent tapes</span>
+              {% for tape in collections.tapes | limit(4) %}
+              <a class="nav-row" href="{% if loop.first %}/{% else %}/tapes/{{ tape.data.slug }}/{% endif %}">
+                <span class="dot{% if loop.first %} is-on{% endif %}" aria-hidden="true"></span>
+                <span class="nav-row-no">{{ tape.data.tapeNumber | pad3 }}</span>
+                <span class="nav-row-title">{{ tape.data.title }}</span>
+                <span class="nav-row-date">{{ tape.data.date | readableDate }}</span>
+              </a>
+              {% else %}
+              <span class="nav-panel-empty">nothing recorded yet</span>
+              {% endfor %}
+              <a class="nav-panel-all" href="/archive/">all tapes &#8594;</a>
+            </span>
+          </span>
+
+          <a href="/about/"{% if page.url == "/about/" %} class="is-here" aria-current="page"{% endif %}>about</a>
+        </nav>
+      </header>
 
       <main class="page-body">
         {{ content | safe }}
       </main>
 
-      <div class="site-footer">
-        <a href="/">october tooth</a>
+      <footer class="site-footer">
+        <a class="site-footer-mark" href="/">october tooth</a>
         <a href="/archive/">archive</a>
         <a href="/about/">about</a>
-      </div>
+      </footer>
     </div>
   </body>
 </html>

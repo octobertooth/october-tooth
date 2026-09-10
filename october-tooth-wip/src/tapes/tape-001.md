@@ -17,20 +17,28 @@ tracks:
 wavDownload: "https://www.dropbox.com/scl/fi/kebpmrh88g6eiqihktc0a/tape-0001-wav.zip?rlkey=uybkmkkuz29m8cqou1b9wq8rh&st=zs4kqb6h&dl=1"
 bandcamp: "https://octobertooth.bandcamp.com"
 soundcloud: "https://soundcloud.com/octobertooth"
-notes: >
+notes: |
   a few notes on this one — what the arrangement idea was, what was on the
-  tv, what didn't work.
+  tv, what didn't work. the notes block takes as much text as it needs now:
+  leave a blank line between paragraphs and each one is set as its own
+  paragraph.
+
+  the second pass is the one worth keeping. the first take runs about four
+  bars too long before the change, and you can hear the tv underneath the
+  whole middle section.
 media:
   - type: "image"
     src: "cassette-tape-august-front.png"
     label: "the painted august cover, front"
     alt: "the august cassette, front cover"
-    ratio: "1 / 1"
+    note: |
+      painted on the j-card itself, so the proportions are the cassette's
+      rather than anything chosen. the lettering was done last and in a
+      hurry, which is why it leans.
   - type: "image"
     src: "100-0073.JPG"
     label: "sleepless in seattle on the batman tv"
     alt: "batman tv"
-    ratio: "1 / 1"
   # playlists and videos embed by pasting the ordinary share url here.
   # spotify, youtube, vimeo, apple music and soundcloud are recognised.
   - type: "video"

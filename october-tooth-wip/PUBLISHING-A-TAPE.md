@@ -98,12 +98,13 @@ below is optional.
 | --- | --- |
 | `headerImage` | Full path to the wide image at the top of the page, e.g. `"/images/tapes/tape-005/header.jpg"`. Leave it out and the page simply starts at the title. |
 | `headerAlt` | Description of the header image for screen readers. Leave as `""` if the image is decorative. |
-| `notes` | A paragraph about the tape, shown under the deck. Use the `>` folded style shown in `tape-004.md` for multi-line text. |
+| `notes` | The writing about the tape, shown under the deck. Use the `|` block style (see `tape-001.md`) and leave a blank line between paragraphs — each one is set as its own paragraph, so this section can be as long as it needs to be. |
 | `wavDownload` | Path to a zip of the raw files, e.g. `"/media/tape-005/tape-005.zip"`. Adds a "download wavs" button. |
 | `bandcamp` | Full `https://` link. Adds a "bandcamp" button. |
 | `soundcloud` | Full `https://` link. Adds a "soundcloud" button. |
 | `tracks` | The tracklist, and what the deck plays. See below. |
 | `media` | Photos, videos, and embedded playlists shown below the notes. See step 6. |
+| `status` | Normally left out. The newest tape is marked **live** in the archive (the filled dot) and every older one **archived** (the hollow dot). Set `status: "archived"` on the newest tape if you want it to read as archived even while it is on the front page. |
 
 ### The tracklist
 
@@ -117,7 +118,7 @@ tracks:
     audio: "track-02.mp3"
 ```
 
-- `title` — shown in the tracklist and on the cassette label.
+- `title` — shown in the tracklist and as the cued track above the clock.
 - `duration` — written as `m:ss`. The deck reads this **before** the audio file
   loads, so it should match the real length. It is also what the deck counts
   against if there is no audio file at all.
@@ -127,8 +128,8 @@ tracks:
   `https://` URL to a file hosted elsewhere.
 
 **You can publish a tape with no audio files at all.** If a track has no
-playable file, the deck lights its small `demo` lamp and runs the transport,
-counter and meters against the printed `duration`. The page looks and behaves
+playable file, the player prints a small `no file` mark next to the clock and
+runs the counter against the printed `duration`. The page looks and behaves
 correctly; it just makes no sound. This is useful for putting a tape up before
 the mixes are finished.
 
@@ -207,12 +208,20 @@ media:
     src: "cassette-front.png"
     label: "painting"
     alt: "the october cassette, front"
-    ratio: "1 / 1"
+    note: |
+      the longer story about this one, if there is one. blank lines make
+      new paragraphs here too.
 ```
 
-`label` is the caption. `alt` is the screen-reader description. `ratio` is
-optional and controls the card's shape (`"1 / 1"` square, `"16 / 9"` wide,
-`"4 / 3"`).
+`label` is the short caption printed under the image, next to its number.
+`alt` is the screen-reader description. `note` is optional: add it and the
+caption line becomes clickable, opening the longer text underneath the image.
+Leave it out and the item just shows its number and caption.
+
+Photos and paintings are printed at their own proportions — a tall photo stays
+tall, a wide one stays wide, and nothing is cropped or stretched to match its
+neighbours. There is no `ratio` to set on an image; very tall images are simply
+capped at roughly a screen-height so they don't run away down the page.
 
 **An embedded playlist or video** — paste the ordinary share URL you copied out
 of the app. Spotify, YouTube, Vimeo, Apple Music and SoundCloud are recognised
@@ -238,6 +247,10 @@ rather than showing an empty box — so a mistake here is never ugly.
     label: "practice room, tape 005"
     ratio: "16 / 9"
 ```
+
+`ratio` still applies to video and to embeds, where it sets the frame's shape
+before the file loads. `label` and `note` work on video and embeds exactly as
+they do on images.
 
 **A plain link out:**
 
@@ -284,10 +297,11 @@ the command is spelled out in full.
 - The new tape is on the homepage at `/`, not just at its own URL.
 - The date and tape number in the line above the title are right.
 - Every track appears in the tracklist with the correct printed duration.
-- Pressing **play** either plays audio, or lights the `demo` lamp and runs the
-  counter — both are fine, silence with no lamp is not.
+- Pressing **play** either plays audio, or shows the `no file` mark and runs
+  the counter — both are fine, silence with no mark is not.
 - Every photo loads (a broken image means a filename or folder-name mismatch —
-  check capitals and the slug).
+  check capitals and the slug), and each one has a caption line under it.
+- Any item with a `note` opens it when you click the caption line.
 - The previous tape appears in `/archive/` and the `← tape 004` arrow at the
   bottom of the new tape goes to it.
 
