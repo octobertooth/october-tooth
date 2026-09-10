@@ -1,15 +1,15 @@
 /* october tooth — main stylesheet
    monochrome: black, white, grey. no decorative colour anywhere in the chrome.
    the content — photos, paintings, audio, writing — carries the visual interest.
-   type does the rest: a heavy grotesque for the wordmark, titles and prose, a
-   mono for every number, label and caption, and one copperplate script for the
-   masthead sub-line. state is shown with a small dot, filled or hollow, never
-   with colour. */
+   type does the rest: a heavy grotesque for the wordmark, sub-line, titles and
+   prose, and a mono for every number, label and caption. state is shown with a
+   small dot, filled or hollow, never with colour. */
 
-/* the masthead sub-line asks for AcroterionJF — a licensed Jukebox script we
-   can't ship. it's named first in --script so a locally installed copy or an
-   adobe fonts kit wins automatically; pinyon script is the self-hosted
-   copperplate stand-in, and the roundhands after it cover a failed load. */
+/* --script is kept, unused, for anyone who wants the copperplate sub-line back:
+   AcroterionJF is a licensed Jukebox script we can't ship, so it's named first
+   and a locally installed copy or an adobe fonts kit wins automatically; pinyon
+   script is the self-hosted stand-in, roundhands cover a failed load. nothing
+   in the chrome asks for it today, so the font is no longer preloaded. */
 @font-face {
   font-family: "Pinyon Script";
   font-style: normal;
@@ -122,16 +122,17 @@ body {
   text-decoration: none;
 }
 
-/* the sub-line is set in the copperplate script — a flourish against the heavy
-   grotesque above it. natural case and zero tracking, because a connected
-   script comes apart in caps or with letters pushed away from each other. */
+/* the sub-line is set in the same grotesque as the wordmark, italic and five
+   pixels down from the old script line at every width, so it reads as the
+   second line of one lockup rather than a separate flourish. */
 .masthead-sub {
   margin: 6px 0 0;
-  font-family: var(--script);
-  font-size: clamp(21px, 4.2vw, 30px);
+  font-family: var(--sans);
+  font-size: clamp(16px, calc(4.2vw - 5px), 25px);
+  font-style: italic;
   font-weight: 400;
   line-height: 1.25;
-  letter-spacing: 0;
+  letter-spacing: -0.005em;
   text-transform: none;
   color: var(--ink);
 }

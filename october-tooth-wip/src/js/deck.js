@@ -34,6 +34,12 @@
   var idx = -1;
   var mode = "stop"; // stop | play | pause
   var demo = false; // no decodable file: run the counter against the printed duration
+  // every transport action takes a ticket, so a play request rejected after the
+  // next press can be told apart from one that still matters
+  var playToken = 0;
+  var reloaded = false; // a reload is already spent: the next failure is real
+  var reloading = false; // a reload is in flight: leave the counter where it is
+  var reloadAt = 0; // where the last reload picked up, so real progress re-arms it
   var pos = 0;
   var dur = 0;
   var frame = null;
@@ -107,7 +113,7 @@
         pos = pos + dt;
         if (dur > 0 && pos >= dur) return endOfTape();
       } else {
-        if (!dragging) pos = audio.currentTime;
+        if (!dragging && !reloading) pos = audio.currentTime;
         if (isFinite(audio.duration) && audio.duration > 0) dur = audio.duration;
       }
     }
@@ -131,7 +137,11 @@
     if (demo) return;
     try {
       var limit = isFinite(audio.duration) && audio.duration > 0 ? audio.duration - 0.05 : pos;
-      audio.currentTime = Math.max(0, Math.min(pos, limit));
+      var target = Math.max(0, Math.min(pos, limit));
+      // a seek left pending when play() is called is what makes a browser reject
+      // the play request, so don't ask for one we don't need
+      if (Math.abs(audio.currentTime - target) < 0.25) return;
+      audio.currentTime = target;
     } catch (err) {
       /* not seekable yet */
     }
@@ -140,6 +150,7 @@
   function goDemo() {
     if (demo) return;
     demo = true;
+    reloading = false;
     if (flag) {
       flag.classList.add("is-on");
       flag.removeAttribute("aria-hidden");
@@ -151,30 +162,84 @@
     }
   }
 
+  // demo is a fact about the cued track, not about the page: a track with no
+  // file must never silence the ones that do have one.
+  function leaveDemo() {
+    if (!demo) return;
+    demo = false;
+    if (flag) flag.classList.remove("is-on");
+  }
+
+  /* only a genuinely unplayable file should drop the deck into the demo
+     counter. a rejected play request with no error on the element — the
+     browser aborting a request because of a pending seek or a re-load, a
+     dropped range request — is a hiccup, and worth one quiet reload. */
+  function fatal(err) {
+    if (audio.error) return audio.error.code !== 2; // 2 = network, retryable
+    return !!(err && err.name === "NotSupportedError");
+  }
+
   function setMode(next) {
     mode = next;
-    if (next !== "play" && !demo) audio.pause();
+    if (next !== "play") {
+      playToken++; // anything still in flight for the old mode is now stale
+      reloading = false;
+      if (!demo) audio.pause();
+    }
     paintState();
     runLoop();
     paint();
   }
 
+  // reload the cued file from scratch and pick playback back up where it was.
+  // used once per cue, after a rejected play request or a dropped connection.
+  function reloadAndPlay() {
+    var src = idx >= 0 ? rows[idx].getAttribute("data-src") : null;
+    if (reloaded || !src) {
+      goDemo();
+      setMode("play");
+      return;
+    }
+    reloaded = true;
+    reloading = true;
+    var resume = pos;
+    reloadAt = resume;
+    var onReady = function () {
+      audio.removeEventListener("loadeddata", onReady);
+      reloading = false;
+      if (mode !== "play") return;
+      pos = resume;
+      attemptPlay();
+    };
+    audio.addEventListener("loadeddata", onReady);
+    audio.src = src;
+    audio.load();
+  }
+
+  function attemptPlay() {
+    writeAudioPos();
+    var token = ++playToken;
+    var started = audio.play();
+    if (!started || !started.catch) return;
+    started.catch(function (err) {
+      // superseded by a later press, or we're no longer meant to be running
+      if (token !== playToken || mode !== "play") return;
+      if (err && err.name === "NotAllowedError") {
+        setMode("pause");
+        return;
+      }
+      if (!fatal(err)) {
+        reloadAndPlay();
+        return;
+      }
+      goDemo();
+      setMode("play");
+    });
+  }
+
   function play() {
     if (idx < 0) cue(0, false);
-    if (!demo) {
-      writeAudioPos();
-      var started = audio.play();
-      if (started && started.catch) {
-        started.catch(function (err) {
-          if (err && err.name === "NotAllowedError") {
-            setMode("pause");
-            return;
-          }
-          goDemo();
-          setMode("play");
-        });
-      }
-    }
+    if (!demo) attemptPlay();
     setMode("play");
   }
 
@@ -219,9 +284,17 @@
     if (npName && mode === "play") npName.textContent = trackTitle();
 
     var src = row.getAttribute("data-src");
+    reloaded = false;
+    reloading = false;
+    playToken++;
     if (src) {
-      audio.src = src;
-      audio.load();
+      leaveDemo();
+      // re-cueing the track that is already loaded keeps everything the browser
+      // has already downloaded; re-loading it would throw the buffer away
+      if (audio.getAttribute("src") !== src) {
+        audio.src = src;
+        audio.load();
+      }
     } else {
       goDemo();
     }
@@ -285,10 +358,29 @@
       paint();
     }
   });
+  audio.addEventListener("timeupdate", function () {
+    if (reloaded && !reloading && audio.currentTime > reloadAt + 3) reloaded = false;
+  });
+
   audio.addEventListener("ended", endOfTape);
+
   audio.addEventListener("error", function () {
+    if (!fatal(null) && mode === "play") {
+      reloadAndPlay(); // connection dropped mid-tape
+      return;
+    }
     goDemo();
     if (mode === "play") setMode("play");
+  });
+
+  // the file turned out to be playable after all — come back out of the counter
+  audio.addEventListener("canplay", function () {
+    if (!demo || audio.error) return;
+    if (idx < 0 || !rows[idx].getAttribute("data-src")) return;
+    leaveDemo();
+    if (isFinite(audio.duration) && audio.duration > 0) dur = audio.duration;
+    if (mode === "play") attemptPlay();
+    paint();
   });
 
   cue(0, false);
