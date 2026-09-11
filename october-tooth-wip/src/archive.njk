@@ -27,7 +27,7 @@ title: "archive — october tooth"
         </td>
         <td class="c-no">{{ tape.data.tapeNumber | pad3 }}</td>
         <td class="c-title">
-          <a href="{% if loop.first %}/{% else %}/tapes/{{ tape.data.slug }}/{% endif %}">{{ tape.data.title }}</a>
+          <a href="/tapes/{{ tape.data.slug }}/">{{ tape.data.title }}</a>
         </td>
         <td class="c-tracks">{% if tape.data.tracks %}{{ tape.data.tracks | length }}{% else %}&mdash;{% endif %}</td>
         <td class="c-date">{{ tape.data.date | readableDate }}</td>
