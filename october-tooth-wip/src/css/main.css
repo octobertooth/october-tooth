@@ -1361,6 +1361,10 @@ body {
   :root {
     --gutter: 20px;
   }
+   
+  .home-panel {
+    max-width: 320px;
+  }
 
   .deck-top {
     flex-direction: column;
