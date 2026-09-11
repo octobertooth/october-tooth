@@ -1,0 +1,29 @@
+---
+layout: layouts/base.njk
+permalink: /shows/
+title: "shows — october tooth"
+shows:
+  - date: "sept 23"
+    venue: "oblivion, los angeles"
+    poster: "/images/shows/oblivion-sept23.jpg"
+    posterAlt: "grady strange, lauren early, october tooth — oblivion, sept 23rd"
+    url: ""
+---
+<div class="shows-list">
+  <h1 class="archive-head">shows</h1>
+
+  {% if shows and shows.length %}
+  {% for show in shows %}
+  <div class="show-entry">
+    {% if show.poster %}<img src="{{ show.poster }}" alt="{{ show.posterAlt or (show.venue + ' show poster') }}" class="show-poster" />{% endif %}
+    {% if show.url %}
+    <a href="{{ show.url }}" target="_blank" rel="noopener" class="show-text">{{ show.date }} — {{ show.venue }}</a>
+    {% else %}
+    <p class="show-text">{{ show.date }} — {{ show.venue }}</p>
+    {% endif %}
+  </div>
+  {% endfor %}
+  {% else %}
+  <p class="shows-empty">nothing on the calendar right now.</p>
+  {% endif %}
+</div>
