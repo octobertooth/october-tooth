@@ -1366,6 +1366,10 @@ body {
     max-width: 300px;
   }
 
+   .home-hero {
+  padding-top: 60px;
+}
+   
   .deck-top {
     flex-direction: column;
     gap: 18px;
@@ -1439,7 +1443,7 @@ body {
 /* ============ homepage ============ */
 
 .home-hero {
-  min-height: 100vh;
+  min-height: 100dvh;
   background-size: cover;
   background-position: center;
   display: flex;
