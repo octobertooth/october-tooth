@@ -1537,3 +1537,25 @@ a.home-show-text {
    margin-left: calc(50% - 50vw);
    margin-right: calc(50% - 50vw);
 }
+
+/* ============ shop ============ */
+
+.shop-body {
+  padding: 80px 20px;
+  text-align: center;
+}
+
+.shop-status {
+  margin: 0 0 20px;
+}
+
+.shop-note {
+  font-family: var(--mono);
+  font-size: 14px;
+  color: var(--ink);
+}
+
+.shop-note a {
+  color: var(--ink);
+  text-decoration: underline;
+}
