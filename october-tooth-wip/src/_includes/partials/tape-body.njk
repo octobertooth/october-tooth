@@ -64,7 +64,7 @@
               <path d="M4.6 2.4h5.6v19.2H4.6zM13.8 2.4h5.6v19.2h-5.6z" />
             </svg>
           </span>
-          <span class="key-legend" data-play-legend>play</span>
+          <span class="key-legend sr-only" data-play-legend>play</span>
         </button>
         <button class="key key--stop" type="button" data-act="stop" aria-label="stop">
           <span class="key-glyph" aria-hidden="true">
@@ -72,7 +72,7 @@
               <path d="M2.9 2.9h18.2v18.2H2.9Z" />
             </svg>
           </span>
-          <span class="key-legend">stop</span>
+          <span class="key-legend sr-only">stop</span>
         </button>
       </div>
 
@@ -108,11 +108,9 @@
   {% endif %}
 </section>
 
-{% if t.wavDownload or t.bandcamp or t.soundcloud %}
+{% if t.wavDownload %}
 <div class="listen-links">
-  {% if t.wavDownload %}<a href="{{ t.wavDownload }}" download>download wavs</a>{% endif %}
-  {% if t.bandcamp %}<a href="{{ t.bandcamp }}" rel="noopener">bandcamp</a>{% endif %}
-  {% if t.soundcloud %}<a href="{{ t.soundcloud }}" rel="noopener">soundcloud</a>{% endif %}
+  <a href="{{ t.wavDownload }}" download>download wavs</a>
 </div>
 {% endif %}
 
