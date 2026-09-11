@@ -1516,3 +1516,14 @@ body {
 a.home-show-text {
   text-decoration: underline;
 }
+
+.home-about-link {
+  margin-top: 16px;
+  font-family: var(--mono);
+  font-size: 13px;
+}
+
+.home-about-link a {
+  color: var(--ink);
+  text-decoration: underline;
+}
