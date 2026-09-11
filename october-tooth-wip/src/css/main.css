@@ -672,11 +672,6 @@ body {
   fill: currentColor;
 }
 
-.key--play .key-icon {
-  width: clamp(23px, 5vw, 31px);
-  height: clamp(23px, 5vw, 31px);
-}
-
 /* play doubles as pause — the glyph follows the legend */
 
 .key--play .key-icon--pause,
