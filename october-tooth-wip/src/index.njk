@@ -3,11 +3,6 @@ layout: layouts/base.njk
 permalink: /
 homeImage: "/images/home/hopepage-background-1.png"
 homeImageAlt: "6star 91angel"
-nextShow:
-  date: "sept 23"
-  venue: "oblivion, los angeles"
-  poster: "/images/home/show-923.jpeg"
-  url: ""
 ---
 {% set t = collections.tapes[0].data %}
 <div class="home-hero" style="background-image: url('{{ homeImage }}');" role="img" aria-label="{{ homeImageAlt }}">
@@ -28,19 +23,9 @@ nextShow:
         <li><a href="https://on.soundcloud.com/mA0rHAlNXnDysiI1Yd" target="_blank" rel="noopener">soundcloud</a></li>
         <li><a href="https://youtube.com/@octobertooth" target="_blank" rel="noopener">youtube</a></li>
         <li><a href="/shop/">shop</a></li>
+        <li><a href="/shows/">shows</a></li>
         <li><a href="/archive/">archive</a></li>
       </ul>
-
-      {% if nextShow %}
-      <div class="home-show">
-        {% if nextShow.poster %}<img src="{{ nextShow.poster }}" alt="{{ nextShow.venue }} show poster" class="home-show-poster" />{% endif %}
-        {% if nextShow.url %}
-        <a href="{{ nextShow.url }}" target="_blank" rel="noopener" class="home-show-text">{{ nextShow.date }} — {{ nextShow.venue }}</a>
-        {% else %}
-        <p class="home-show-text">{{ nextShow.date }} — {{ nextShow.venue }}</p>
-        {% endif %}
-      </div>
-      {% endif %}
       <p class="home-about-link"><a href="/about/">about</a></p>
     </div>
   </div>
