@@ -1521,7 +1521,7 @@ a.home-show-text {
 }
 
 .home-about-link {
-  margin-top: 16px;
+  margin-top: 0;
   font-family: var(--mono);
   font-size: 13px;
 }
