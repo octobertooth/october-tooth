@@ -10,6 +10,7 @@
   </head>
   <body>
     <div class="page">
+    {% if page.url != "/" %}
       <header class="masthead">
         <a class="wordmark" href="/">october tooth</a>
         <p class="masthead-sub">every october &middot; forever</p>
@@ -18,7 +19,7 @@
           <a href="/"{% if page.url == "/" %} class="is-here" aria-current="page"{% endif %}>home</a>
 
           <span class="nav-drop">
-            <a href="/archive/"{% if page.url == "/archive/" %} class="is-here" aria-current="page"{% endif %}>archive</a>
+            <a href="/archive/"{% if page.url == "/archive/" %} class="is-here" aria-current="page"{% endif %}>tape archive</a>
             <span class="nav-panel">
               <span class="nav-panel-key">recent tapes</span>
               {% for tape in collections.tapes | limit(4) %}
@@ -38,16 +39,19 @@
           <a href="/about/"{% if page.url == "/about/" %} class="is-here" aria-current="page"{% endif %}>about</a>
         </nav>
       </header>
+      {% endif %}
 
       <main class="page-body">
         {{ content | safe }}
       </main>
 
+    {% if page.url != "/" %}
       <footer class="site-footer">
         <a class="site-footer-mark" href="/">october tooth</a>
         <a href="/archive/">archive</a>
         <a href="/about/">about</a>
       </footer>
+      {% endif %}
     </div>
   </body>
 </html>
