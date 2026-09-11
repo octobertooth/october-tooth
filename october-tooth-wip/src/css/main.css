@@ -1558,3 +1558,41 @@ a.home-show-text {
   color: var(--ink);
   text-decoration: underline;
 }
+
+/* ============ shows ============ */
+
+.shows-list {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.show-entry {
+  border-top: 1px solid var(--ink);
+  padding: 24px 0;
+}
+
+.show-entry:first-of-type {
+  border-top: none;
+}
+
+.show-poster {
+  width: 100%;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.show-text {
+  font-family: var(--mono);
+  font-size: 13px;
+  color: var(--ink);
+}
+
+a.show-text {
+  text-decoration: underline;
+}
+
+.shows-empty {
+  font-family: var(--mono);
+  color: var(--text-muted, #666);
+}
