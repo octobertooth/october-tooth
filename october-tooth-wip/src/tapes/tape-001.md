@@ -21,7 +21,7 @@ notes: |
   I got that recorder some place up north while on a tour - 
   there's a line in a Peachtea song written by John Warrin that's kinda about this time.
   the line can hold a lot of things, but it hits me right down the middle -
-  bright days times trying to make somethin' together with people the you love.
+  bright days just trying to make somethin' together with people the you love.
 
   anyways, I picked this idea back up because I played my first show in
   a few years over at echoparkrising. because I always take a dealine and add another task
