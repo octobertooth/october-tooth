@@ -19,9 +19,9 @@ notes: |
   to record practice cassette tapes on this ole Panasonic SlimLine
   portable cassette recorder with auto stop while I travel all around.
   I got that recorder some place up north while on a tour - 
-  there's a line in a Peachtea song written by John Warrin that's kinda about this time to me.
-  the line can hold a lot of things, but I like to think that it references
-  bright and soft times with someone you love, trying to make somethin' together.
+  there's a line in a Peachtea song written by John Warrin that's kinda about this time.
+  the line can hold a lot of things, but it hits me right down the middle -
+  bright days times trying to make somethin' together with people the you love.
 
   anyways, I picked this idea back up because I played my first show in
   a few years over at echoparkrising. because I always take a dealine and add another task
@@ -40,12 +40,12 @@ notes: |
   
   this recording is just a straightforward take on the set I played at echoparkrising.
   this specific cassette I started recording with my Tascam 246, but 
-  it broke somethin' right after finishing this actual cassette tape.
+  it broke somethin' serious right after finishing this actual cassette tape.
   I mixed this on my Tascam 424 mkIII and all new tapes will be recorded and mixed
   on that machine.
   
-  thanks for listening to this first cassette tape. bright and soft times ahead
-  scroll down for the rest of it.
+  thanks for listening to this first cassette tape. all kinds o' days ahead.
+  scroll on down for the rest of this one.
 media:
   - type: "image"
     src: "cassette-tape-august-front.png"
@@ -53,26 +53,25 @@ media:
     alt: "the august cassette, front cover"
     note: |
       painted on the j-card itself. this cover is a direct reference to an
-      all-time album cover. let me know if you catch it. I'll say it
-      it's kinda tricky to get some good stuff down on the 
-      cassette's glossy finish but here we are. I think it turned out okay.
+      all-time album cover. let me know if you catch it. I'll say it -
+      it's kinda tricky to get some good stuff down on that 
+      glossy finish but here we are. love ya.
   - type: "image"
     src: "100-0164.JPG"
     label: "1969 Italian Job, corner of mkIII & Obbie"
     alt: "the august cassette, front cover"
     note: |
-      opening title sequences are really the real deal
-      don't sleep on 'em. this sucker is from the opening of the Italian Job, but
+      opening title sequences are really the real deal.
+      don't sleep on 'em. this frame is from the opening of the Italian Job, but
       not the smash from 2003
-      this sucker is from 1969 with michael caine
-      the guy from batman. layers
-      this also has a piece of Obbie painting in it.
+      this sucker is from the 1969 one with michael caine. the guy from batman.
+      layers. this picture also has a slice of the Obbie's dream in blue painting in it.
   - type: "image"
     src: "100-0073.JPG"
     label: "sleepless in seattle on the batman tv"
     alt: "batman tv"
     note: |
-      opening title sequence
+      opening title sequence. no sleep.
   - type: "image"
     src: "100-0159.JPG"
     label: "back o' cassette tape"
@@ -82,13 +81,13 @@ media:
     label: "d. b. @ bowl"
     alt: "back o' tape"
     note: |
-      d. b. at the hollywood bowl with kjr & sweet pals
+      d. b. at the hollywood bowl with kjr & sweet pals. also, this is a hint to the cover reference. 
   - type: "image"
     src: "100-0119.JPG"
     label: "lemmy & jeans"
     alt: "lj"
     note: |
-      jeans & lemon love flowers. I love flowers too
+      jeans & lemon love flowers. I love flowers too.
   # playlists and videos embed by pasting the ordinary share url here.
   # spotify, youtube, vimeo, apple music and soundcloud are recognised.
   - type: "video"
@@ -99,9 +98,9 @@ media:
     url: "https://open.spotify.com/playlist/3IrXejj8iOObPS7zpgR2ju?si=h7iuzuB-R96MUMicJSOIJw"
     label: "playlist"
     note: |
-      here is this month's Kelly Jean Ross playlist if you'd like to listen.
-      I've been makin' her a playlist every month for a little bit and they
-      are really just for her, but you can listen too.
+      here is the most recent Kelly Jean Ross playlist if you'd like to listen. September 2026.
+      I've been makin' her a playlist every month for a little bit. really
+      just for her, but you can listen too.
   # a video from youtube or vimeo — same shape, just a different url:
   # - type: "embed"
   #   url: "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
