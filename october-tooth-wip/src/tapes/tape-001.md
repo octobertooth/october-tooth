@@ -15,20 +15,24 @@ wavDownload: "https://www.dropbox.com/scl/fi/kebpmrh88g6eiqihktc0a/tape-0001-wav
 bandcamp: "https://octobertooth.bandcamp.com"
 soundcloud: "https://soundcloud.com/octobertooth"
 notes: |
-  this is kinda v2 o' an idea. years ago I had this idea
+  years ago I had this idea
   to record practice cassette tapes on this ole Panasonic SlimLine
-  portable cassette recorder with auto stop while I travel all around.
-  I got that recorder some place up north while on a tour - 
+  portable cassette recorder with auto stop while I traveled all around.
+  I got that recorder some place up north while on a tour -  
   there's a line in a Peachtea song written by John Warrin that's kinda about this time.
-  the line can hold a lot of things, but it hits me right down the middle -
-  bright days just trying to make somethin' together with people the you love.
+  the line can hold a lot of things, but it hits me right down the middle.
 
-  anyways, I picked this idea back up because I played my first show in
-  a few years over at echoparkrising. because I always take a dealine and add another task
-  on top before the due date, while I was trying to totally rebuild how I sound live solo I thought I should
-  add another layer and try and record that process. 
-  nothing polished, just a college try on each tune.
-
+  anyways, I was getting ready to play my first show in a few years over at echoparkrising.
+  while I was trying to totally rebuild how I sound live, I thought I'd pick the cassette tape idea back up.
+  it's over a decade old at this point - only ever finished two tapes. 
+  stack another layer on the plate. this time I'm cleanin' it.
+   
+  this recording is just a straightforward one take of the set I played at echoparkrising.
+  this specific cassette I started recording with my Tascam 246, but
+  it broke somethin' serious right after finishing this actual cassette tape.
+  I mixed this on my Tascam 424 mkiii and all new tapes will be recorded and mixed
+  on that machine. nothing polished, just a college try on each tune.
+  
   first thing I was tryin' to find was a guitar tone that feels right.
   not sharp, not bright, more like a warm rust color on a fence, round but energetic.
   I'm still working on tryin' to land that tone and old amps break and keep breaking, but
@@ -38,13 +42,7 @@ notes: |
   while being something else entirely. like it's just you and me in this room,
   but also bigger, more fuzzy, a welcomed wave in the ocean.
   
-  this recording is just a straightforward take on the set I played at echoparkrising.
-  this specific cassette I started recording with my Tascam 246, but 
-  it broke somethin' serious right after finishing this actual cassette tape.
-  I mixed this on my Tascam 424 mkIII and all new tapes will be recorded and mixed
-  on that machine.
-  
-  thanks for listening to this first cassette tape. all kinds o' days ahead.
+  thanks for listening to this first cassette tape. bright days ahead. making somethin' together with the people you love.
   scroll on down for the rest of this one.
 media:
   - type: "image"
